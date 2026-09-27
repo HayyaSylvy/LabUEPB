@@ -1,28 +1,26 @@
 {
-  description = "A Nix-flake-based Node.js development environment";
+  description = "Example flake with a devShell";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  outputs = { self , nixpkgs ,... }: let
-    # system should match the system you are running on
-    system = "x86_64-linux";
-  in {
-    devShells.x86_64-linux.default = let
+  outputs = { self, nixpkgs }:
+    let
+      system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-    in pkgs.mkShell {
-      # create an environment with nodejs, pnpm, and yarn
-      packages = with pkgs; [
+    in {
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
             boost
             catch2
             cmake
+            gcc
             clang-tools
             stdenv
-      ];
-
-      shellHook = ''
-      '';
+            lldb
+        ];
+        shellHook = ''
+          echo "Welcome to the devShell!"
+        '';
+      };
     };
-  };
 }
