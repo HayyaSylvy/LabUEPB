@@ -1,30 +1,28 @@
 {
-  description = "C++ Development with Nix in 2023";
+  description = "A Nix-flake-based Node.js development environment";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   };
 
-  outputs = inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      # This is the list of architectures that work with this project
-      systems = [
-        "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"
-      ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-
-        # devShells.default describes the default shell with C++, cmake, boost,
-        # and catch2
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            # C++ Compiler is already part of stdenv
+  outputs = { self , nixpkgs ,... }: let
+    # system should match the system you are running on
+    system = "x86_64-linux";
+  in {
+    devShells."${system}".default = let
+      pkgs = import nixpkgs { inherit system; };
+    in pkgs.mkShell {
+      # create an environment with nodejs, pnpm, and yarn
+      packages = with pkgs; [
             boost
             catch2
             cmake
             clang-tools
             stdenv
-          ];
-        };
-      };
+      ];
+
+      shellHook = ''
+      '';
     };
+  };
 }
