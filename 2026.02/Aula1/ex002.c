@@ -21,8 +21,8 @@ int main() {
     printf("\t\nProduto");
     printf("\t              Preço");
     printf("\t\n----------------------------");
-    printf("\n %-20s R$%.2f\t", prod1, quant1);
-    printf("\n %-20s R$%.2f\t", prod2, quant2);
-    printf("\n %-20s R$%.2f\t \n", prod3, quant3);
+    printf("\n %-21s R$%.2f\t", prod1, quant1);
+    printf("\n %-21s R$%.2f\t", prod2, quant2);
+    printf("\n %-21s R$%.2f\t \n", prod3, quant3);
     return 0;
 }
