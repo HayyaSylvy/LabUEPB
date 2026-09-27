@@ -9,7 +9,7 @@
     # system should match the system you are running on
     system = "x86_64-linux";
   in {
-    devShells."${system}".default = let
+    devShells.x86_64-linux.default = let
       pkgs = import nixpkgs { inherit system; };
     in pkgs.mkShell {
       # create an environment with nodejs, pnpm, and yarn
