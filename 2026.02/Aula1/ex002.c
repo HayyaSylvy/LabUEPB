@@ -8,11 +8,11 @@ int main() {
     float quant3;
     printf("Digite o nome de um produto: ");
     scanf("%s", &prod1);
-    printf("Digite o preço desse produto: ");
+    printf("Digite o preco desse produto: ");
     scanf("%f", &quant1);
     printf("\nDigite o nome de outro produto: ");
     scanf("%s", &prod2);
-    printf("Digite o preço desse produto: ");
+    printf("Digite o preco desse produto: ");
     scanf("%f", &quant2);
     printf("\nDigite o nome de mais um produto: ");
     scanf("%s", &prod3);
